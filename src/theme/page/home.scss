@@ -1,0 +1,319 @@
+@import '../common/base.scss';
+
+.avtar {
+    width: 30px;
+    height: 30px;
+    img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+}
+
+.chat-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    .header {
+        width: 100%;
+        padding: 20px;
+        height: 70px;
+        box-sizing: border-box;
+        @include baseFlex;
+
+        .logo {
+            width: 36px;
+            color: var(--theme-color)
+        }
+
+        .userInfo {
+            @include baseFlex;
+            gap: 10px;
+
+            .theme {
+                @include baseFlex;
+                gap: 10px;
+
+                i {
+                    display: inline-block;
+                    position: relative;
+                    top: -9px;
+                }
+
+                label {
+                    font-size: 13px;
+                    color: #424242;
+                    font-weight: 500;
+                }
+
+                .btn-color-mode-switch {
+                    display: inline-block;
+                    margin: 0px;
+                    position: relative;
+                }
+
+                .btn-color-mode-switch>label.btn-color-mode-switch-inner {
+                    margin: 0px;
+                    width: 140px;
+                    height: 30px;
+                    background: #E0E0E0;
+                    border-radius: 26px;
+                    overflow: hidden;
+                    position: relative;
+                    transition: all 0.3s ease;
+                    /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
+                    display: block;
+                }
+
+                .btn-color-mode-switch>label.btn-color-mode-switch-inner:before {
+                    content: attr(data-on);
+                    position: absolute;
+                    font-size: 12px;
+                    font-weight: 500;
+                    top: 7px;
+                    right: 20px;
+                }
+
+                .btn-color-mode-switch>label.btn-color-mode-switch-inner:after {
+                    content: attr(data-off);
+                    width: 70px;
+                    height: 16px;
+                    background: #fff;
+                    border-radius: 26px;
+                    position: absolute;
+                    left: 2px;
+                    top: 2px;
+                    text-align: center;
+                    transition: all 0.3s ease;
+                    box-shadow: 0px 0px 6px -2px #111;
+                    padding: 5px 0px;
+                }
+
+                .btn-color-mode-switch>.alert {
+                    display: none;
+                    background: #FF9800;
+                    border: none;
+                    color: #fff;
+                }
+
+                .btn-color-mode-switch input[type="checkbox"] {
+                    cursor: pointer;
+                    width: 50px;
+                    height: 25px;
+                    opacity: 0;
+                    position: absolute;
+                    top: 0;
+                    z-index: 1;
+                    margin: 0px;
+                }
+
+                .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner {
+                    background: #151515;
+                    color: #fff;
+                }
+
+                .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:after {
+                    content: attr(data-on);
+                    left: 68px;
+                    background: #3c3c3c;
+                }
+
+                .btn-color-mode-switch input[type="checkbox"]:checked+label.btn-color-mode-switch-inner:before {
+                    content: attr(data-off);
+                    right: auto;
+                    left: 20px;
+                }
+
+                .btn-color-mode-switch input[type="checkbox"]:checked~.alert {
+                    display: block;
+                }
+
+                .dark-preview {
+                    background: #0d0d0d;
+                }
+
+                .white-preview {
+                    background: #fff;
+                }
+            }
+        }
+    }
+
+    .chat-body {
+        height: 85vh;
+        overflow: auto;
+        width: 50%;
+        margin: auto;
+        border: 1px solid var(--border-color);
+        padding: 0 20px;
+
+        .chat-header {
+            @include baseFlex;
+            padding: 20px 0;
+            box-sizing: border-box;
+            font-size: 18px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            background: var(--chat-header-bg);
+        }
+
+        .conversation {
+            display: flex;
+            align-items: flex-end;
+            gap: 14px;
+            margin-bottom: 10px;
+            animation: jump .3s forwards;
+
+            .avtar {
+                transform: translateY(5px);
+                background-color: #fff;
+                border-radius: 50%;
+            }
+
+            .words {
+                box-sizing: border-box;
+                background-color: var(--chat-text-bg);
+                padding: 15px;
+                border-radius: 20px 20px 20px 0;
+                line-height: 1.5;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+
+        .me {
+            justify-content: flex-end;
+
+            .words {
+                background-color: var(--theme-color);
+                color: #fff;
+                border-radius: 20px 20px 0px 20px;
+            }
+        }
+
+        .chater {
+            justify-content: flex-start;
+            color: var(--chat-text-color);
+        }
+
+
+    }
+
+    .footer {
+        width: 100%;
+        border-top: 2px solid var(--border-color);
+        @include baseFlex;
+        padding: 10px 10px 10px 20px;
+        box-sizing: border-box;
+        background-color: var(--theme-bg-color);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        .emoji {
+            position: absolute;
+            left: 10px;
+            bottom: 70px;
+        }
+        .input-box {
+            margin: auto;
+            height: 50px;
+            box-sizing: border-box;
+            width: 82%;
+            input {
+                outline: none;
+                border: none;
+                background-color: transparent;
+                width: 100%;
+                height: 100%;
+                padding-left: 10px;
+                border-radius: 10px;
+                color: var(--chat-text-color);
+
+                &:focus,
+                &:valid {
+                    border: 2px solid var(--border-color);
+                }
+            }
+        }
+
+        .send {
+
+            button {
+                font-family: inherit;
+                font-size: 8px;
+                background: var(--theme-color);
+                color: white;
+                padding: 0.8em 1em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                border-radius: 25px;
+                box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+            }
+
+            button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            button:active {
+                transform: scale(0.95);
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            button svg {
+                width: 18px;
+                height: 18px;
+                fill: white;
+                transition: all 0.3s;
+            }
+
+            button .svg-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.2);
+                transition: all 0.3s;
+                margin: auto;
+
+            }
+
+            button:hover .svg-wrapper {
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+
+            button:hover svg {
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+}
+
+@keyframes jump {
+
+    0% {
+        opacity: 0;
+        transform: translateY(-25%);
+        animationTimingFunction: cubic-bezier(0.8, 0, 1, 1);
+    }
+    100% {
+        transform: translateY(-25%);
+        animationTimingFunction: cubic-bezier(0.8, 0, 1, 1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(0);
+        animationTimingFunction: cubic-bezier(0, 0, 0.2, 1);
+    }
+}

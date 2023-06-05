@@ -1,0 +1,15 @@
+@media screen and (max-width: 600px){
+    .chat-body {
+        width: 100% !important;
+        height: 80vh !important;
+        .conversation {
+            gap: 8px !important;
+            .words {
+                padding: 7px 12px !important;
+            }
+        }
+    }
+    .footer {
+        bottom: 20px !important;
+    }
+}
